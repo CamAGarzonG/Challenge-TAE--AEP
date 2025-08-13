@@ -22,7 +22,6 @@ public class ApiTest {
 
     @Test
     public void getPokemonListTest_MethodOne() {
-        // Extrae la lista de nombres de los Pokémon
         List<String> pokemonNames =
         given()
                         .baseUri(BASE_URL)
@@ -55,13 +54,12 @@ public class ApiTest {
 
         Pokemon raichu = serviceEndPoint.getPokemonDetails2(pokemonName);
 
-        // Validaciones básicas
+        // Validations basics
         assertNotNull(raichu, "Raichu should not be null");
         assertEquals(pokemonName, raichu.getName(), "Pokemon name should be raichu");
         assertNotNull(raichu.getAbilities(), "Raichu abilities should not be null");
         assertFalse(raichu.getAbilities().isEmpty(), "Raichu should have at least one ability");
 
-        // Print Raichu abilities
         System.out.println("Habilidades de " + pokemonName + ":");
         raichu.getAbilities().forEach(a -> {
             if (a != null && a.getAbility() != null) {
@@ -69,7 +67,7 @@ public class ApiTest {
             }
         });
 
-        // Validar nombres y URLs de habilidades
+        // Names-Url-Abilities
         raichu.getAbilities().forEach(a -> {
             assertNotNull(a.getAbility().getName(), "Ability name should not be null");
             assertFalse(a.getAbility().getName().isEmpty(), "Ability name should not be empty");
@@ -79,7 +77,7 @@ public class ApiTest {
             assertTrue(a.getSlot() > 0, "Slot should be greater than 0");
         });
 
-        // No hay habilidades duplicadas
+        // No duplicates
         List<String> abilityNamesList = raichu.getAbilities()
                 .stream()
                 .map(a -> a.getAbility().getName())
@@ -87,7 +85,7 @@ public class ApiTest {
         Set<String> abilityNamesSet = new HashSet<>(abilityNamesList);
         assertEquals(abilityNamesList.size(), abilityNamesSet.size(), "There should be no duplicate abilities");
 
-        // Validar que todas las habilidades existen en el endpoint de habilidades
+        // Validate presence of all abilities
         List<Ability> allAbilities = serviceEndPoint.getAbilities();
         Set<String> abilityNames = allAbilities.stream()
                 .map(Ability::getName)

@@ -1,6 +1,5 @@
 # Challenge-TAE--AEP
 
-![img.png](img.png)
 
 ## Estructura del proyecto
 
@@ -55,6 +54,23 @@ C:.
 └───Otras carpetas
 
 ```
+## Ejercicio 1 -
+
+## Ejercicio 2 - Base de Datos: SQLite y Pruebas Automatizadas
+
+Este proyecto valida cómo conectar, consultar y modificar una base de datos SQLite, así como la automatización de pruebas que demuestren la interaccion con la data.
+## Requisitos
+
+- Java 11 o superior
+- Maven 3.x
+- Google Chrome instalado
+- Base de datos con informacion dentro (Para validar coneccion e interaccion con la misma)
+
+![img_2_1.png](img_2_1.png)
+
+## Descripción
+
+..................
 
 ## Ejercicio 3 - Automatización Web: Descarga de Archivos
 

@@ -13,11 +13,5 @@ public class Main {
             System.out.println(user);
         }
 
-        // Ejemplo con más de un parámetro (si tuvieras más columnas para filtrar)
-        // String query2 = "SELECT * FROM usuarios WHERE Name = ? AND id = ?";
-        // List<Map<String, Object>> users2 = DatabaseUtils.executeQuery(query2, "Juan Pérez", 1);
-        // for (Map<String, Object> user : users2) {
-        //     System.out.println(user);
-        // }
     }
 }
