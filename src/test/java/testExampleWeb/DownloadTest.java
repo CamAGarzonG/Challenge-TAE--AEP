@@ -1,7 +1,7 @@
 package testExampleWeb;
 
-import exampleWeb.pages.DownloadPage;
-import exampleWeb.utils.FileUtils;
+import testExampleWeb.pages.DownloadPage;
+import testExampleWeb.utils.FileUtils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +40,7 @@ public class DownloadTest {
     void testDownloadFile() throws IOException, InterruptedException {
         DownloadPage downloadPage = new DownloadPage(driver);
 
-        // Download file
+        // Download file (Wait for 10 seconds)
         downloadPage.downloadFile(fileName);
         Path filePath = Paths.get(downloadDir, fileName);
         int waitSeconds = 10;
@@ -49,18 +49,18 @@ public class DownloadTest {
             Thread.sleep(1000);
             waited++;
         }
-        if (!Files.exists(filePath)) {
-            throw new IllegalStateException("The file " + filePath + " was not downloaded after 20 seconds");
-        }
         // Verify file exist
         if (!Files.exists(filePath)) {
-            throw new IllegalStateException("El archivo no existe en la ruta esperada: " + filePath);
+            throw new IllegalStateException("The file " + filePath + " was not downloaded after 20 seconds in expected route.");
         }
+        System.out.println("File was downloaded in" + filePath);
         String content = FileUtils.readFileContent(filePath);
         Assertions.assertThat(content).isNotEmpty();
+        System.out.println("File "+ fileName + " is not empty");
         // Validate file content
         try {
             Assertions.assertThat(content).isEqualTo("blah blah blah\n");
+            System.out.println("Text contains blah blah blah");
         } catch (AssertionError e) {
             System.err.println("¡ALERT! File text is not the expected. \nExpected: blah blah blah\nCurrent:"+content);
             throw e;
